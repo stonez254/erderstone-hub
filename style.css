@@ -17,7 +17,7 @@
     --color-widget-bg: rgba(10, 10, 31, 0.7); /* Slightly transparent dark panel */
     --color-sidebar-bg: rgba(10, 10, 31, 0.9); 
     --font-primary: 'Orbitron', sans-serif;
-    --font-secondary: 'Arial', sans-serif;
+    --font-secondary: 'Orbitron', sans-serif;
     --transition-speed: 0.3s ease-in-out;
 }
 
