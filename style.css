@@ -12,6 +12,7 @@ html, body {
 }
 
 /* Update the main body style */
+/* Update the main body style */
 body {
     font-family: 'Orbitron', sans-serif;
     color: #e0e0e0;
@@ -25,7 +26,6 @@ body {
     overflow-y: auto; 
     overflow-x: hidden; 
 }
-
 /* VIDEO BACKGROUND STYLES */
 #video-background {
     position: fixed;
@@ -62,6 +62,7 @@ body::before {
 /* 2. (OR 3. depending on your file) MAIN DASHBOARD GRID */
 /* ====================================================== */
 
+/* Update the main dashboard grid for all devices */
 main {
     flex-grow: 1;
     display: grid;
@@ -71,11 +72,18 @@ main {
     gap: 15px; 
     padding: 15px;
     
-    /* *** CRITICAL FIX: Base padding for all sides (Minimal) *** */
-    padding-left: 15px; 
+    /* *** CRITICAL FIX: The padding needs to be minimal by default *** */
+    padding-left: 15px; /* Base padding for all sides */
     
     overflow-y: auto; 
     z-index: 1;
+}
+
+/* Add a desktop-only override for the sidebar offset */
+@media (min-width: 993px) {
+    main {
+        padding-left: 100px; /* Offset for collapsed sidebar (80px + 20px) */
+    }
 }
 /* ... other widget styles follow ... */
 
@@ -484,34 +492,38 @@ main {
 /* ====================================================== */
 
 @media (max-width: 992px) {
+    /* Main Content Grid */
     main {
-        grid-template-columns: 1fr;
-        padding-left: 15px;
-        padding-right: 15px; /* Ensure padding on the right */
-        gap: 25px;
-        /* CRITICAL: Adjust padding to account for the fixed menu button */
-        padding-top: 80px; 
+        grid-template-columns: 1fr; 
+        padding-left: 15px; /* Use default padding */
+        padding-top: 15px;
+        gap: 25px; 
     }
-
-    /* Target the sidebar wrapper to prevent it from covering everything when closed */
-    .sidebar-wrapper {
-        width: 80px; /* Collapsed width */
-        height: 100vh;
-        background-color: transparent; /* Make it transparent when collapsed */
-        border-right: none;
-        padding-top: 80px;
-        /* Ensure the wrapper doesn't obscure content */
-        pointer-events: none; 
-        transition: width 0.5s ease-out, background-color 0.5s;
+    
+    /* Header - must span full width */
+    .main-header {
+        grid-column: 1 / -1; 
     }
-
-    /* When expanded, the sidebar takes over */
-    .sidebar-wrapper.expanded {
-        width: 100vw;
-        max-width: none;
-        background-color: rgba(15, 15, 27, 0.98); /* Make it opaque when open */
-        pointer-events: auto; /* Allow clicks inside */
+    
+    /* Ensure widgets also span full width */
+    .hero-section, .dashboard-widgets, .materials-hub, .coding-room { 
+        grid-column: 1 / -1; 
     }
+    
+    /* Sidebar Fix: When expanded, it should cover the page but not push content off screen */
+    .sidebar-wrapper { 
+        width: 100vw; 
+        height: 100vh; /* Take up the full viewport height */
+        padding-top: 65px; 
+        position: fixed;
+        top: 0;
+        left: 0;
+    }
+    .sidebar-wrapper.expanded { 
+        width: 100vw; 
+        max-width: none; 
+    }
+}
     
     /* Ensure the main content is not offset, but the button is fixed */
     #sidebar-toggle-btn {
