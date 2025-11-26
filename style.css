@@ -6,7 +6,7 @@ html, body {
     margin: 0;
     padding: 0;
     height: 100%; 
-    overflow: hidden; /* Locks the main page scroll */
+ overflow-x: hidden; /* Only prevent horizontal scroll */
     box-sizing: border-box;
 }
 
@@ -18,6 +18,8 @@ body {
     flex-direction: column; 
     position: relative;
     background-color: #1a1a2e; /* Fallback color */
+    overflow-y: auto; /* ALLOW VERTICAL SCROLL */
+    position: relative;
 }
 
 /* VIDEO BACKGROUND STYLES */
@@ -482,15 +484,31 @@ main {
 }
 
 @media (max-width: 992px) {
-    main { 
-        grid-template-columns: 1fr; 
-        padding-left: 15px; 
-        gap: 25px; 
+   main {
+        grid-template-columns: 1fr;
+        padding-left: 15px;
+        gap: 25px;
+        /* Add this to allow content to display properly on a single column */
+        width: 100%;
+        min-height: 100vh;
     }
-    .sidebar-wrapper { width: 100vw; padding-top: 65px; }
-    .sidebar-wrapper.expanded { width: 100vw; max-width: none; }
     
-    .hero-section, .dashboard-widgets, .materials-hub, .coding-room { grid-column: 1 / -1; }
-    .main-footer { grid-column: 1 / -1; }
-    .dashboard-widgets { flex-direction: column; gap: 20px; } 
+    /* Ensure the sidebar doesn't hide everything when collapsed/expanded */
+    .sidebar-wrapper { 
+        width: 100vw; 
+        padding-top: 65px; 
+        position: fixed; /* Keep it fixed */
+    }
+    .sidebar-wrapper.expanded { 
+        width: 100vw; 
+        max-width: none; 
+        background-color: rgba(15, 15, 27, 1); /* Ensure full visibility */
+    }
+    
+    /* Ensure the toggle button is easily accessible */
+    #sidebar-toggle-btn {
+        top: 10px; /* Adjust top position for better placement */
+        left: 10px;
+    }
+    /* ... other mobile styles ... */
 }
