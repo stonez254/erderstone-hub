@@ -8,17 +8,11 @@
 
 /* --- Color Variables --- */
 :root {
-    --color-dark-bg: #0A0A1F; /* Deep Dark Blue/Purple */
-    --color-primary-accent: #00FFFF; /* Bright Cyan/Aqua Neon */
-    --color-secondary-accent: #FF00FF; /* Magenta Neon */
-    --color-text-primary: #E0FFFF; /* Light Neon Text */
-    --color-text-secondary: #AAAAFF; /* Muted Light Blue */
-    --color-border-glow: #00FFFF;
-    --color-widget-bg: rgba(10, 10, 31, 0.7); /* Slightly transparent dark panel */
-    --color-sidebar-bg: rgba(10, 10, 31, 0.9); 
-    --font-primary: 'Orbitron', sans-serif;
-    --font-secondary: 'Orbitron', sans-serif;
-    --transition-speed: 0.3s ease-in-out;
+    --color-primary: #38c3e8; /* Neon Blue */
+    --color-secondary: #ff00ff; /* Neon Pink/Magenta */
+    --color-dark-bg: #1a1a2e; /* Dark Blue/Purple */
+    --color-card-bg: #282845;
+    --color-text: #e0e0e0;
 }
 
 /* --- Global Reset and Base Styles --- */
@@ -468,116 +462,37 @@ section:hover {
 .main-footer {
     padding: 15px 20px;
     text-align: center;
-    border-top: 1px dashed var(--color-secondary-accent);
-    background: rgba(0, 0, 0, 0.8);
-    margin-top: 40px;
+    padding: 10px;
+    font-size: 0.7em;
+    color: rgba(255, 255, 255, 0.4);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.main-footer p {
-    font-family: var(--font-primary);
-    font-size: 0.8rem;
-    color: var(--color-text-secondary);
-    letter-spacing: 1px;
+/* ====================================================== */
+/* 5. RESPONSIVE DESIGN */
+/* ====================================================== */
+
+@media (max-width: 1200px) {
+    main { 
+        grid-template-columns: 0 repeat(2, 5fr); 
+    } 
+    .hero-section { grid-column: 2 / 4; }
+    .dashboard-widgets { grid-column: 2 / 3; }
+    .materials-hub { grid-column: 3 / 4; }
+    .coding-room { grid-column: 2 / 4; grid-row: 3 / 4; }
+    .main-footer { grid-column: 2 / -1; }
 }
 
-/* --- Media Queries for Responsiveness --- */
-@media (max-width: 768px) {
-    .main-header {
-        padding: 10px;
+@media (max-width: 992px) {
+    main { 
+        grid-template-columns: 1fr; 
+        padding-left: 15px; 
+        gap: 25px; 
     }
-
-    .website-title {
-        font-size: 2rem;
-    }
-
-    .dashboard-widgets {
-        grid-template-columns: 1fr;
-    }
-
-    .hero-section {
-        padding: 40px 10px;
-    }
-
-    .display-window {
-        font-size: 1.5rem;
-        min-height: 60px;
-    }
+    .sidebar-wrapper { width: 100vw; padding-top: 65px; }
+    .sidebar-wrapper.expanded { width: 100vw; max-width: none; }
     
-    .tool-categories {
-        width: 250px;
-        left: -250px;
-        padding-top: 80px;
-    }
-    
-    #menu-toggle-btn {
-        width: 50px;
-        height: 50px;
-        font-size: 1.2rem;
-        top: 20px; /* Adjust FAB position for smaller screens */
-    }
-    
-    .tool-links {
-        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-    }
-
-    .editor-controls {
-        flex-direction: column;
-        gap: 10px;
-    }
-    
-    .editor-controls button {
-        margin-right: 0;
-    }
-}
-
-/* Additional utility styles for subtle depth and detail */
-
-/* Icon styling for all section headings */
-section h2 i {
-    margin-right: 8px;
-    font-size: 1.5rem;
-}
-
-.ai-tools i { color: #00FFFF; }
-.coding-sites i { color: #00FF00; }
-.entertainment-services i { color: #FF00FF; }
-
-/* Subtle inner border to simulate a screen bezel */
-.widget, .material-link, .category-group {
-    position: relative;
-}
-
-.widget::before, .material-link::before, .category-group::before {
-    content: '';
-    position: absolute;
-    top: 5px;
-    left: 5px;
-    right: 5px;
-    bottom: 5px;
-    border: 1px dashed rgba(255, 255, 255, 0.1);
-    border-radius: 4px;
-    pointer-events: none;
-}
-
-/* Active/Hover states for aesthetic elements */
-.material-link:active {
-    transform: scale(0.98);
-}
-
-/* Scrollbar styling for a futuristic look */
-::-webkit-scrollbar {
-    width: 8px;
-}
-
-::-webkit-scrollbar-track {
-    background: #1A1A1A;
-}
-
-::-webkit-scrollbar-thumb {
-    background: var(--color-primary-accent);
-    border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: var(--color-secondary-accent);
+    .hero-section, .dashboard-widgets, .materials-hub, .coding-room { grid-column: 1 / -1; }
+    .main-footer { grid-column: 1 / -1; }
+    .dashboard-widgets { flex-direction: column; gap: 20px; } 
 }
