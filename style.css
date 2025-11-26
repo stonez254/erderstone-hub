@@ -14,24 +14,13 @@ html, body {
 /* Update the main body style */
 /* Update the main body style */
 
-<<<<<<< HEAD
-/* Update the main body style */
-/* Update the main body style */
-
-=======
->>>>>>> parent of 9ca3de5 (FIX: Mobile visibility and grid padding offset for small screens)
+:root {
+    /* ... existing colors ... */
+    --font-display: 'Orbitron', sans-serif;
+    --font-body: 'Inter', sans-serif;
+}
 body {
-    /* --- CRITICAL MOBILE VISIBILITY FIXES --- */
-body { 
-    /* Prevents content from forcing the page to scroll horizontally */
-    overflow-x: hidden;
-}
-.main-header { 
-    /* Ensures the header is always on top (z-index) and fixed in place (sticky) */
-    position: sticky;
-    top: 0;
-    z-index: 100; 
-}
+
     font-family: 'Orbitron', sans-serif;
     color: #e0e0e0;
     line-height: 1.6;
@@ -39,10 +28,17 @@ body {
     flex-direction: column;
     position: relative;
     background-color: #1a1a2e;
-    
-    /* Ensure content can scroll vertically if it exceeds viewport height */
-    overflow-y: auto; 
-    overflow-x: hidden; 
+
+    /* Ensure content can scroll vertically and prevent horizontal overflow */
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* Keep header sticky and on top */
+.main-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
 /* VIDEO BACKGROUND STYLES */
@@ -578,12 +574,16 @@ main {
         width: 100vw; 
         max-width: none; 
     }
-}
-    
+
     /* Ensure the main content is not offset, but the button is fixed */
     #sidebar-toggle-btn {
         top: 10px; /* Adjust top position for better placement */
         left: 10px;
     }
     /* ... other mobile styles ... */
+}
+
+/* Applying the distinctive font to large, prominent elements */
+.website-title, .hero-title, .time-display, .card-header {
+    font-family: var(--font-display);
 }
