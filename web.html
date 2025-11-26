@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Erderstone - Your Comprehensive Student Hub</title>
+    
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    
+    <video autoplay muted loop id="video-background">
+        <source src="https://example.com/your-waterfall-video.mp4" type="video/mp4"> 
+        Your browser does not support the video tag.
+    </video>
+    
+    <header class="main-header">
+        <h1 class="website-title">Erderstone</h1>
+    </header>
+
+    <main>
+        
+        <div class="sidebar-wrapper">
+            
+            <button id="sidebar-toggle-btn" class="blazing-btn">
+                <i class="fas fa-bars"></i> Menu
+            </button>
+            
+            <section class="tool-categories" id="tool-categories">
+                
+                <div class="category-group ai-tools">
+                    <h2>AI Tools</h2>
+                    <div class="tool-links">
+                        <a href="https://chat.openai.com/" target="_blank" class="tool-icon" aria-label="ChatGPT">
+                            <i class="fas fa-robot"></i> 
+                            <span>ChatGPT</span>
+                        </a>
+                        <a href="https://gemini.google.com/" target="_blank" class="tool-icon" aria-label="Gemini">
+                            <i class="fas fa-brain"></i>
+                            <span>Gemini</span>
+                        </a>
+                        <a href="https://x.com/grok" target="_blank" class="tool-icon" aria-label="Grok">
+                            <i class="fas fa-meteor"></i>
+                            <span>Grok</span>
+                        </a>
+                        <a href="https://perplexity.ai/" target="_blank" class="tool-icon" aria-label="Perplexity AI">
+                            <i class="fas fa-search"></i>
+                            <span>Perplexity</span>
+                        </a>
+                        <a href="https://www.echemi.com/" target="_blank" class="tool-icon" aria-label="EChemi Assistant">
+                            <i class="fas fa-flask"></i>
+                            <span>Chemi AI</span>
+                        </a>
+                        <a href="https://www.grammarly.com/" target="_blank" class="tool-icon" aria-label="Grammarly">
+                            <i class="fas fa-pen-nib"></i>
+                            <span>Grammarly</span>
+                        </a>
+                        <a href="https://midjourney.com/" target="_blank" class="tool-icon" aria-label="MidJourney">
+                            <i class="fas fa-palette"></i>
+                            <span>MidJourney</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="category-group coding-sites">
+                    <h2>Coding Sites</h2>
+                    <div class="tool-links">
+                        <a href="https://www.sololearn.com/" target="_blank" class="tool-icon" aria-label="SoloLearn">
+                            <i class="fas fa-code"></i>
+                            <span>SoloLearn</span>
+                        </a>
+                        <a href="https://www.freecodecamp.org/" target="_blank" class="tool-icon" aria-label="freeCodeCamp">
+                            <i class="fas fa-book-open"></i>
+                            <span>freeCodeCamp</span>
+                        </a>
+                        <a href="https://www.hackerrank.com/" target="_blank" class="tool-icon" aria-label="HackerRank">
+                            <i class="fas fa-terminal"></i>
+                            <span>HackerRank</span>
+                        </a>
+                        <a href="https://leetcode.com/" target="_blank" class="tool-icon" aria-label="LeetCode">
+                            <i class="fas fa-puzzle-piece"></i>
+                            <span>LeetCode</span>
+                        </a>
+                        <a href="https://www.codewars.com/" target="_blank" class="tool-icon" aria-label="CodeWars">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>CodeWars</span>
+                        </a>
+                        <a href="https://developer.mozilla.org/en-US/" target="_blank" class="tool-icon" aria-label="MDN Web Docs">
+                            <i class="fas fa-globe"></i>
+                            <span>MDN Docs</span>
+                        </a>
+                        <a href="https://www.w3schools.com/" target="_blank" class="tool-icon" aria-label="W3Schools">
+                            <i class="fas fa-layer-group"></i>
+                            <span>W3Schools</span>
+                        </a>
+                        <a href="https://github.com/" target="_blank" class="tool-icon" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                            <span>GitHub</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="category-group entertainment-services">
+                    <h2>Entertainment</h2>
+                    <div class="tool-links">
+                        <a href="https://www.youtube.com/" target="_blank" class="tool-icon" aria-label="YouTube">
+                            <i class="fab fa-youtube"></i>
+                            <span>YouTube</span>
+                        </a>
+                        <a href="https://www.spotify.com/" target="_blank" class="tool-icon" aria-label="Spotify">
+                            <i class="fab fa-spotify"></i>
+                            <span>Spotify</span>
+                        </a>
+                        <a href="https://www.twitch.tv/" target="_blank" class="tool-icon" aria-label="Twitch">
+                            <i class="fab fa-twitch"></i>
+                            <span>Twitch</span>
+                        </a>
+                        <a href="https://www.netflix.com/" target="_blank" class="tool-icon" aria-label="Netflix">
+                            <i class="fas fa-film"></i>
+                            <span>Netflix</span>
+                        </a>
+                    </div>
+                </div>
+                </section>
+        </div> 
+
+
+        <section class="hero-section">
+            <div class="display-window">
+                <span id="typing-text"></span>
+                <span class="cursor">|</span> 
+            </div>
+        </section>
+
+
+        <section class="dashboard-widgets">
+            
+            <div class="widget clock-widget">
+                <h2><i class="fas fa-clock"></i> Current Time</h2>
+                <div id="current-time">00:00:00</div>
+            </div>
+            
+            <div class="widget weather-widget">
+                <h2><i class="fas fa-sun"></i> Weather Forecast</h2>
+                <div id="current-weather">Loading weather...</div>
+                
+                <h3>Forecast Patterns</h3>
+                <div id="weather-predictions" class="predictions-grid">
+                    <p>Mon: 15° Cloudy</p>
+                    <p>Tue: 18° Sunny</p>
+                    <p>Wed: 16° Rain</p>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="materials-hub">
+            <h2><i class="fas fa-book-open"></i> Essential Study Materials</h2>
+            <div class="material-list">
+                <a href="materials/Chem_Notes.pdf" target="_blank" class="material-link">
+                    <i class="fas fa-file-pdf"></i> Chemistry Notes (PDF)
+                </a>
+                <a href="materials/Math_Formulae.pdf" target="_blank" class="material-link">
+                    <i class="fas fa-file-pdf"></i> Advanced Math Formulae
+                </a>
+                <a href="materials/Exam_Prep_Guide.pdf" target="_blank" class="material-link">
+                    <i class="fas fa-file-pdf"></i> Exam Preparation Guide
+                </a>
+                <a href="materials/Thesis_Formatting_Guide.pdf" target="_blank" class="material-link">
+                    <i class="fas fa-file-pdf"></i> Thesis Formatting Guide
+                </a>
+                <a href="materials/Computer_Science_101.pdf" target="_blank" class="material-link">
+                    <i class="fas fa-file-pdf"></i> C.S. Intro Guide
+                </a>
+                <a href="materials/Data_Structures_Cheat_Sheet.pdf" target="_blank" class="material-link">
+                    <i class="fas fa-file-pdf"></i> Data Structures Sheet
+                </a>
+            </div>
+        </section>
+
+
+        <section class="coding-room">
+            <h2><i class="fas fa-laptop-code"></i> Student Coding Room (HTML/CSS/JS)</h2>
+            <div class="editor-container">
+                <textarea id="code-input" placeholder="// Write your code here (HTML/CSS/JS). Use Local Storage to save!
+// Example: console.log('Hello Erderstone!');"></textarea>
+                <div class="editor-controls">
+                    <button id="run-code"><i class="fas fa-play"></i> Run Code</button>
+                    <button id="save-code"><i class="fas fa-save"></i> Save Locally</button>
+                    <button id="clear-code"><i class="fas fa-trash"></i> Clear</button>
+                </div>
+                <iframe id="code-output" title="Code Output Preview"></iframe>
+            </div>
+        </section>
+        
+    </main>
+
+    <footer class="main-footer">
+        <p>© 2025 Erderstone. Designed for Future Innovators.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
