@@ -137,6 +137,43 @@ main {
 }
 
 /* --- FIRE BUTTON STYLES --- */
+
+/* FLOATING ACTION BUTTON (FAB) - STYLES */
+#menu-toggle-btn {
+    /* Positioning */
+    position: fixed;
+    bottom: 20px; /* Initial fixed position */
+    right: 20px; /* Initial fixed position */
+    z-index: 9999; /* Max Z-INDEX to ensure visibility */
+    
+    /* Appearance */
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: var(--glow-primary); 
+    color: white;
+    border: 3px solid var(--glow-secondary);
+    box-shadow: 0 0 8px var(--glow-secondary), 0 0 15px rgba(255, 0, 255, 0.8);
+    
+    /* Interaction & Animation */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
+    cursor: grab; 
+    transition: all 0.2s ease-in-out; 
+    left: auto; /* Required for the drag logic to work properly */
+    top: auto; /* Required for the drag logic to work properly */
+    
+    animation: pulse-glow 2s infinite alternate;
+}
+
+#menu-toggle-btn:active {
+    /* ... other active styles ... */
+    cursor: grabbing; 
+    animation: none;
+}
+
 #sidebar-toggle-btn {
     position: fixed; 
     top: 15px;

@@ -261,19 +261,106 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-// Inside document.addEventListener('DOMContentLoaded', ...)
+// This section should be inside your main 'DOMContentLoaded' event listener
 
-// Variables for drag functionality
+// --- FLOATING BUTTON DRAGGING LOGIC (The corrected feature) ---
 let isDragging = false;
-let startX, startY;
-let initialX, initialY; 
+let currentX = 0; // Current x-axis translation offset
+let currentY = 0; // Current y-axis translation offset
+let initialX;
+let initialY;
+let xOffset = 0; // Accumulated total x offset
+let yOffset = 0; // Accumulated total y offset
+const dragThreshold = 5; 
+let hasMoved = false;
 
-// Reference to the button (assuming you updated the HTML)
-const menuToggleBtn = document.getElementById('menu-toggle-btn');
+function getCoords(e) {
+    // Handles both touch and mouse events
+    if (e.touches) {
+        return { x: e.touches[0].clientX, y: e.touches[0].clientY };
+    }
+    return { x: e.clientX, y: e.clientY };
+}
 
+function dragStart(e) {
+    if (e.type === "mousedown" && e.button !== 0) return; 
 
-// --- Dragging Functions ---
+    const coords = getCoords(e);
+    // Calculate the start position relative to the current position (including offsets)
+    initialX = coords.x - xOffset;
+    initialY = coords.y - yOffset;
+    hasMoved = false;
 
+    if (e.target === menuToggleBtn || menuToggleBtn.contains(e.target)) {
+        isDragging = true;
+        menuToggleBtn.style.transition = 'none'; // Disable CSS transition for smooth drag
+        menuToggleBtn.style.cursor = 'grabbing';
+    }
+}
+
+function drag(e) {
+    if (!isDragging) return;
+
+    e.preventDefault();
+
+    const coords = getCoords(e);
+    
+    // Calculate the new translation offset
+    currentX = coords.x - initialX;
+    currentY = coords.y - initialY;
+    
+    // Check if the movement exceeds the drag threshold (to confirm it's a drag, not a click)
+    if (Math.abs(currentX - xOffset) > dragThreshold || Math.abs(currentY - yOffset) > dragThreshold) {
+        hasMoved = true;
+    }
+    
+    setTranslate(currentX, currentY, menuToggleBtn);
+}
+
+function dragEnd(e) {
+    if (!isDragging) return;
+    
+    isDragging = false;
+    menuToggleBtn.style.cursor = 'grab';
+    menuToggleBtn.style.transition = 'all 0.2s ease-in-out'; // Re-enable transition
+
+    // Store the final position as the new offset
+    xOffset = currentX;
+    yOffset = currentY;
+
+    // Click protection logic
+    if (hasMoved) {
+        menuToggleBtn.dataset.dragging = 'true';
+        setTimeout(() => {
+            menuToggleBtn.dataset.dragging = 'false';
+        }, 50); 
+    }
+}
+
+function setTranslate(xPos, yPos, el) {
+    // *** THE CRITICAL FIX ***
+    // ONLY use transform for movement. Do NOT try to set el.style.top or el.style.left here.
+    el.style.transform = `translate3d(${xPos}px, ${yPos}px, 0)`;
+}
+
+// Attach Event Listeners
+menuToggleBtn.addEventListener("mousedown", dragStart, false);
+window.addEventListener("mouseup", dragEnd, false);
+window.addEventListener("mousemove", drag, false);
+
+menuToggleBtn.addEventListener("touchstart", dragStart, false);
+window.addEventListener("touchend", dragEnd, false);
+window.addEventListener("touchmove", drag, false);
+
+// ... your existing sidebar toggle logic ...
+
+// This must replace the old click listener to ensure dragging doesn't open the menu
+menuToggleBtn.addEventListener('click', (e) => {
+    if (menuToggleBtn.dataset.dragging !== 'true') {
+        // Assuming your sidebar toggle function is called 'toggleSidebar'
+        toggleSidebar(); 
+    }
+});
 function startDrag(e) {
     e.preventDefault(); // Prevents touch scrolling on mobile
     isDragging = true;
