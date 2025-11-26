@@ -10,45 +10,16 @@
 html, body {
     margin: 0;
     padding: 0;
-<<<<<<< HEAD
-=======
     height: 100%;
-    overflow-x: hidden; /* Prevents horizontal scroll */
-    overflow-y: auto;  /* *** CRITICAL CHANGE: Allows vertical scroll *** */
     box-sizing: border-box;
-}
-
-/* Update the main body style */
-/* Update the main body style */
-
-<<<<<<< HEAD
-/* Update the main body style */
-/* Update the main body style */
-
-=======
->>>>>>> parent of 9ca3de5 (FIX: Mobile visibility and grid padding offset for small screens)
-body {
-    /* --- CRITICAL MOBILE VISIBILITY FIXES --- */
-body { 
-    /* Prevents content from forcing the page to scroll horizontally */
-    overflow-x: hidden;
-}
-.main-header { 
-    /* Ensures the header is always on top (z-index) and fixed in place (sticky) */
-    position: sticky;
-    top: 0;
-    z-index: 100; 
-}
->>>>>>> parent of af156b3 (update)
     font-family: 'Orbitron', sans-serif;
     background-color: var(--color-dark-bg);
     color: var(--color-text);
     overflow-x: hidden;
-    overflow-y: auto; 
-    box-sizing: border-box;
+    overflow-y: auto;
     display: flex;
     flex-direction: column;
-<<<<<<< HEAD
+    position: relative;
 }
 *, *::before, *::after {
     box-sizing: inherit;
@@ -67,14 +38,6 @@ body {
     position: sticky;
     top: 0;
     z-index: 100;
-=======
-    position: relative;
-    background-color: #1a1a2e;
-    
-    /* Ensure content can scroll vertically if it exceeds viewport height */
-    overflow-y: auto; 
-    overflow-x: hidden; 
->>>>>>> parent of af156b3 (update)
 }
 .website-title {
     margin: 0;
@@ -345,33 +308,28 @@ main {
     /* Restore single-page view on desktop */
     #dashboard-view { display: block; height: auto; width: auto; position: static; }
     #coding-view { display: none !important; } /* Coding room view defaults to dashboard button */
-    
+
     main {
         padding-left: 100px; /* Sidebar offset */
-        display: grid; 
+        display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 20px;
         max-width: 1400px;
         margin: 0 auto;
     }
-<<<<<<< HEAD
 
     .combined-widget { grid-column: 1 / 2; }
     .quick-links-grid { grid-column: 3 / 4; }
     .action-btn { grid-column: 1 / 4; } /* Buttons span full width */
-    
+
     /* Coding Content layout on desktop */
     #coding-view .coding-content {
         flex-direction: row;
     }
-=======
-}
-    
+
     /* Ensure the main content is not offset, but the button is fixed */
     #sidebar-toggle-btn {
         top: 10px; /* Adjust top position for better placement */
         left: 10px;
     }
-    /* ... other mobile styles ... */
->>>>>>> parent of af156b3 (update)
 }
