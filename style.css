@@ -319,12 +319,17 @@ main {
 
 /* Hero Section (Typing Animation) */
 .hero-section {
+    padding: 20px 0;
+    text-align: center;
+    /* CRITICAL ADJUSTMENT: Ensures the element flows naturally and is not stuck */
+    position: relative; 
+    z-index: 10;
     grid-column: 2 / 5; 
     height: 25vh; 
     min-height: 150px;
     background-color: rgba(10, 10, 26, 0.9); 
     border-radius: 10px;
-    position: relative;
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -364,10 +369,14 @@ main {
 
 /* Ensures the currently active view (the dashboard) is visible and correctly positioned */
 .active-view { 
-    display: flex;       /* Ensures the content is visible (not hidden by 'display: none') */
+display: flex; 
     flex-direction: column; 
-    /* Gives the dashboard some top padding so it doesn't hide behind the sticky header */
-    padding-top: 10px; 
+    padding-top: 10px;
+    /* CRITICAL ADJUSTMENT: Ensures content takes up available space and is scrollable */
+    min-height: calc(100vh - 50px); /* 50px assumes header height */
+    /* Ensure content does not get clipped if it exceeds the min-height */
+    overflow-y: auto;
+
 }
 
 /* Ensures the grid content (main) has padding and doesn't stretch past screen edges */
