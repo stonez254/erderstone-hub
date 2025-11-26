@@ -13,7 +13,19 @@ html, body {
 
 /* Update the main body style */
 /* Update the main body style */
+
 body {
+    /* --- CRITICAL MOBILE VISIBILITY FIXES --- */
+body { 
+    /* Prevents content from forcing the page to scroll horizontally */
+    overflow-x: hidden;
+}
+.main-header { 
+    /* Ensures the header is always on top (z-index) and fixed in place (sticky) */
+    position: sticky;
+    top: 0;
+    z-index: 100; 
+}
     font-family: 'Orbitron', sans-serif;
     color: #e0e0e0;
     line-height: 1.6;
@@ -26,6 +38,7 @@ body {
     overflow-y: auto; 
     overflow-x: hidden; 
 }
+
 /* VIDEO BACKGROUND STYLES */
 #video-background {
     position: fixed;
@@ -291,6 +304,9 @@ main {
 /* ====================================================== */
 
 /* Base style for all content sections */
+
+
+
 .dashboard-widgets, .coding-room, .materials-hub {
     background-color: rgba(30, 30, 59, 0.85); 
     border-radius: 10px;
@@ -344,6 +360,20 @@ main {
     grid-column: 2 / 3; 
     align-items: stretch; 
     gap: 20px; 
+}
+
+/* Ensures the currently active view (the dashboard) is visible and correctly positioned */
+.active-view { 
+    display: flex;       /* Ensures the content is visible (not hidden by 'display: none') */
+    flex-direction: column; 
+    /* Gives the dashboard some top padding so it doesn't hide behind the sticky header */
+    padding-top: 10px; 
+}
+
+/* Ensures the grid content (main) has padding and doesn't stretch past screen edges */
+main { 
+    padding: 10px 20px; /* Adds side padding for mobile */
+    max-width: 100%;    /* Prevents content from overflowing */
 }
 
 .widget {
@@ -421,6 +451,31 @@ main {
 /* Coding Room Styles */
 .coding-room {
     grid-column: 4 / 5;
+}
+
+#coding-view { 
+    /* Makes the coding room take up the full mobile screen when opened */
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100vh; 
+    z-index: 200; 
+    overflow-y: scroll; /* Allows scrolling if editor is too big */
+}
+
+.sidebar { 
+    /* Makes the sidebar slide in over the content on mobile */
+    position: fixed; 
+    right: 0; 
+    top: 0; 
+    height: 100%; 
+    transform: translateX(100%); /* Hides it off-screen initially */
+    z-index: 300;
+    transition: transform 0.3s ease-out; 
+}
+.sidebar.active { 
+    transform: translateX(0); /* Slides it into view */
 }
 
 .editor-container {
