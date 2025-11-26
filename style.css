@@ -523,8 +523,7 @@ main {
         width: 100vw; 
         max-width: none; 
     }
-}
-    
+
     /* Ensure the main content is not offset, but the button is fixed */
     #sidebar-toggle-btn {
         position: fixed; /* Keep it fixed */
@@ -534,6 +533,7 @@ main {
         pointer-events: auto; /* Allow clicks on the button */
     }
 }
+
 /* Add this desktop-only override (New Rule) */
 @media (min-width: 993px) {
     main {
