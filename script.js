@@ -257,3 +257,98 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+
+
+
+// Inside document.addEventListener('DOMContentLoaded', ...)
+
+// Variables for drag functionality
+let isDragging = false;
+let startX, startY;
+let initialX, initialY; 
+
+// Reference to the button (assuming you updated the HTML)
+const menuToggleBtn = document.getElementById('menu-toggle-btn');
+
+
+// --- Dragging Functions ---
+
+function startDrag(e) {
+    e.preventDefault(); // Prevents touch scrolling on mobile
+    isDragging = true;
+
+    // Get touch coordinates or mouse coordinates
+    const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+    const clientY = e.type.includes('touch') ? e.touches[0].clientY : e.clientY;
+
+    // Record the starting mouse/touch position
+    startX = clientX;
+    startY = clientY;
+    
+    // Record the initial button position
+    initialX = menuToggleBtn.offsetLeft;
+    initialY = menuToggleBtn.offsetTop;
+    
+    // Change cursor style (optional visual cue)
+    menuToggleBtn.style.cursor = 'grabbing';
+}
+
+function onDrag(e) {
+    if (!isDragging) return;
+    
+    const clientX = e.type.includes('touch') ? e.touches[0].clientX : e.clientX;
+    const clientY = e.type.includes('touch') ? e.touches[0].clientY : e.clientY;
+
+    // Calculate how far the cursor has moved
+    const dx = clientX - startX;
+    const dy = clientY - startY;
+
+    // Calculate new position
+    let newX = initialX + dx;
+    let newY = initialY + dy;
+
+    // Keep the button within the viewport bounds
+    const maxX = window.innerWidth - menuToggleBtn.offsetWidth;
+    const maxY = window.innerHeight - menuToggleBtn.offsetHeight;
+
+    newX = Math.max(0, Math.min(newX, maxX));
+    newY = Math.max(0, Math.min(newY, maxY));
+
+    // Apply the new position
+    menuToggleBtn.style.left = `${newX}px`;
+    menuToggleBtn.style.top = `${newY}px`;
+    
+    // Since we are setting left/top, we need to clear bottom/right properties
+    menuToggleBtn.style.right = 'auto';
+    menuToggleBtn.style.bottom = 'auto';
+}
+
+function endDrag(e) {
+    if (!isDragging) return;
+    
+    // A flag to prevent the 'click' event from firing immediately after a drag
+    isDragging = false; 
+    menuToggleBtn.style.cursor = 'pointer';
+}
+
+// Add event listeners (Mouse and Touch for mobile compatibility)
+menuToggleBtn.addEventListener('mousedown', startDrag);
+document.addEventListener('mousemove', onDrag);
+document.addEventListener('mouseup', endDrag);
+
+menuToggleBtn.addEventListener('touchstart', startDrag);
+document.addEventListener('touchmove', onDrag);
+document.addEventListener('touchend', endDrag);
+
+// --- Important: Re-wire the click event ---
+// The click event needs to be filtered so it only opens the menu if the button wasn't dragged.
+
+menuToggleBtn.addEventListener('click', (e) => {
+    // Check if the button was dragged (dx or dy was non-zero)
+    if (Math.abs(e.clientX - startX) < 5 && Math.abs(e.clientY - startY) < 5) {
+        // If not dragged (or dragged minimally), toggle the sidebar
+        toggleSidebar();
+    }
+});
+// NOTE: Since the `toggleSidebar` function is already defined, this will work!
