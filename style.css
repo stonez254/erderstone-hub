@@ -598,6 +598,7 @@ main {
         pointer-events: auto; /* Allow clicks on the button */
     }
 }
+
 /* Add this desktop-only override (New Rule) */
 @media (min-width: 993px) {
     main {
