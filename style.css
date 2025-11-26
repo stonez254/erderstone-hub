@@ -11,16 +11,19 @@ html, body {
     box-sizing: border-box;
 }
 
+/* Update the main body style */
 body {
     font-family: 'Orbitron', sans-serif;
     color: #e0e0e0;
     line-height: 1.6;
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
     position: relative;
-    background-color: #1a1a2e; /* Fallback color */
-    overflow-y: auto; /* ALLOW VERTICAL SCROLL */
-    position: relative;
+    background-color: #1a1a2e;
+    
+    /* Ensure content can scroll vertically if it exceeds viewport height */
+    overflow-y: auto; 
+    overflow-x: hidden; 
 }
 
 /* VIDEO BACKGROUND STYLES */
@@ -55,20 +58,26 @@ body::before {
 ::-webkit-scrollbar-thumb { background-color: #00e6ff; border-radius: 4px; }
 
 
-/* MAIN DASHBOARD GRID */
+/* ====================================================== */
+/* 2. (OR 3. depending on your file) MAIN DASHBOARD GRID */
+/* ====================================================== */
+
 main {
-    flex-grow: 1; 
+    flex-grow: 1;
     display: grid;
-    /* 0 (Sidebar) + 4fr (Col 2) + 4fr (Col 3) + 4fr (Col 4) */
+    /* (Desktop default: 0 sidebar + 3 columns) */
     grid-template-columns: 0 repeat(3, 4fr); 
     grid-template-rows: auto 1fr; 
     gap: 15px; 
     padding: 15px;
-    padding-left: 100px; /* Offset for collapsed sidebar (80px + 20px) */
-    overflow-y: visible; /* Ensure main content is not clipped by its own container */
-    padding-bottom: 100px; /* Add extra space at the bottom */
+    
+    /* *** CRITICAL FIX: Base padding for all sides (Minimal) *** */
+    padding-left: 15px; 
+    
+    overflow-y: auto; 
     z-index: 1;
 }
+/* ... other widget styles follow ... */
 
 
 /* ====================================================== */
@@ -511,5 +520,12 @@ main {
         left: 15px;
         z-index: 1000; /* CRITICAL: Ensure button is above everything */
         pointer-events: auto; /* Allow clicks on the button */
+    }
+}
+/* Add this desktop-only override (New Rule) */
+@media (min-width: 993px) {
+    main {
+        /* Restores the necessary space for the collapsed desktop sidebar */
+        padding-left: 100px; 
     }
 }
