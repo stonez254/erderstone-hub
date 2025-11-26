@@ -23,7 +23,47 @@ html, body {
     box-sizing: inherit;
 }
 
+
+/* Update the main body style */
+body {
+    font-family: 'Orbitron', sans-serif;
+    color: #e0e0e0;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background-color: #1a1a2e;
+    
+    /* Ensure content can scroll vertically if it exceeds viewport height */
+    overflow-y: auto; 
+    overflow-x: hidden; 
+}
 /* HEADER AND DYNAMIC TEXT (STATIC ELEMENTS) */
+
+/* Update the main dashboard grid for all devices */
+main {
+    flex-grow: 1;
+    display: grid;
+    /* (Desktop default: 0 sidebar + 3 columns) */
+    grid-template-columns: 0 repeat(3, 4fr); 
+    grid-template-rows: auto 1fr; 
+    gap: 15px; 
+    padding: 15px;
+    
+    /* *** CRITICAL FIX: The padding needs to be minimal by default *** */
+    padding-left: 15px; /* Base padding for all sides */
+    
+    overflow-y: auto; 
+    z-index: 1;
+}
+
+/* Add a desktop-only override for the sidebar offset */
+@media (min-width: 993px) {
+    main {
+        padding-left: 100px; /* Offset for collapsed sidebar (80px + 20px) */
+    }
+}
+
 .main-header {
     background-color: var(--color-card-bg);
     color: var(--color-primary);
@@ -301,27 +341,36 @@ main {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* MEDIA QUERY FOR DESKTOP (Restores 3-Column Grid) */
-@media (min-width: 993px) {
-    /* Restore single-page view on desktop */
-    #dashboard-view { display: block; height: auto; width: auto; position: static; }
-    #coding-view { display: none !important; } /* Coding room view defaults to dashboard button */
-    
+@media (max-width: 992px) {
+    /* Main Content Grid */
     main {
-        padding-left: 100px; /* Sidebar offset */
-        display: grid; 
-        grid-template-columns: repeat(3, 1fr);
-        gap: 20px;
-        max-width: 1400px;
-        margin: 0 auto;
+        grid-template-columns: 1fr; 
+        padding-left: 15px; /* Use default padding */
+        padding-top: 15px;
+        gap: 25px; 
     }
-
-    .combined-widget { grid-column: 1 / 2; }
-    .quick-links-grid { grid-column: 3 / 4; }
-    .action-btn { grid-column: 1 / 4; } /* Buttons span full width */
     
-    /* Coding Content layout on desktop */
-    #coding-view .coding-content {
-        flex-direction: row;
+    /* Header - must span full width */
+    .main-header {
+        grid-column: 1 / -1; 
+    }
+    
+    /* Ensure widgets also span full width */
+    .hero-section, .dashboard-widgets, .materials-hub, .coding-room { 
+        grid-column: 1 / -1; 
+    }
+    
+    /* Sidebar Fix: When expanded, it should cover the page but not push content off screen */
+    .sidebar-wrapper { 
+        width: 100vw; 
+        height: 100vh; /* Take up the full viewport height */
+        padding-top: 65px; 
+        position: fixed;
+        top: 0;
+        left: 0;
+    }
+    .sidebar-wrapper.expanded { 
+        width: 100vw; 
+        max-width: none; 
     }
 }
