@@ -3,10 +3,11 @@
 /* ====================================================== */
 
 html, body {
-    margin: 0;
+   margin: 0;
     padding: 0;
-    height: 100%; 
- overflow-x: hidden; /* Only prevent horizontal scroll */
+    height: 100%;
+    overflow-x: hidden; /* Prevents horizontal scroll */
+    overflow-y: auto;  /* *** CRITICAL CHANGE: Allows vertical scroll *** */
     box-sizing: border-box;
 }
 
@@ -64,7 +65,8 @@ main {
     gap: 15px; 
     padding: 15px;
     padding-left: 100px; /* Offset for collapsed sidebar (80px + 20px) */
-    overflow-y: auto; 
+    overflow-y: visible; /* Ensure main content is not clipped by its own container */
+    padding-bottom: 100px; /* Add extra space at the bottom */
     z-index: 1;
 }
 
@@ -472,43 +474,42 @@ main {
 /* 5. RESPONSIVE DESIGN */
 /* ====================================================== */
 
-@media (max-width: 1200px) {
-    main { 
-        grid-template-columns: 0 repeat(2, 5fr); 
-    } 
-    .hero-section { grid-column: 2 / 4; }
-    .dashboard-widgets { grid-column: 2 / 3; }
-    .materials-hub { grid-column: 3 / 4; }
-    .coding-room { grid-column: 2 / 4; grid-row: 3 / 4; }
-    .main-footer { grid-column: 2 / -1; }
-}
-
 @media (max-width: 992px) {
-   main {
+    main {
         grid-template-columns: 1fr;
         padding-left: 15px;
+        padding-right: 15px; /* Ensure padding on the right */
         gap: 25px;
-        /* Add this to allow content to display properly on a single column */
-        width: 100%;
-        min-height: 100vh;
+        /* CRITICAL: Adjust padding to account for the fixed menu button */
+        padding-top: 80px; 
+    }
+
+    /* Target the sidebar wrapper to prevent it from covering everything when closed */
+    .sidebar-wrapper {
+        width: 80px; /* Collapsed width */
+        height: 100vh;
+        background-color: transparent; /* Make it transparent when collapsed */
+        border-right: none;
+        padding-top: 80px;
+        /* Ensure the wrapper doesn't obscure content */
+        pointer-events: none; 
+        transition: width 0.5s ease-out, background-color 0.5s;
+    }
+
+    /* When expanded, the sidebar takes over */
+    .sidebar-wrapper.expanded {
+        width: 100vw;
+        max-width: none;
+        background-color: rgba(15, 15, 27, 0.98); /* Make it opaque when open */
+        pointer-events: auto; /* Allow clicks inside */
     }
     
-    /* Ensure the sidebar doesn't hide everything when collapsed/expanded */
-    .sidebar-wrapper { 
-        width: 100vw; 
-        padding-top: 65px; 
-        position: fixed; /* Keep it fixed */
-    }
-    .sidebar-wrapper.expanded { 
-        width: 100vw; 
-        max-width: none; 
-        background-color: rgba(15, 15, 27, 1); /* Ensure full visibility */
-    }
-    
-    /* Ensure the toggle button is easily accessible */
+    /* Ensure the main content is not offset, but the button is fixed */
     #sidebar-toggle-btn {
-        top: 10px; /* Adjust top position for better placement */
-        left: 10px;
+        position: fixed; /* Keep it fixed */
+        top: 15px;
+        left: 15px;
+        z-index: 1000; /* CRITICAL: Ensure button is above everything */
+        pointer-events: auto; /* Allow clicks on the button */
     }
-    /* ... other mobile styles ... */
 }
