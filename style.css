@@ -605,3 +605,42 @@ main {
         padding-left: 100px; 
     }
 }
+
+
+
+/* ====================================================== */
+#menu-toggle-btn {
+    /* Positioning */
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 500; /* Ensure it is above almost everything */
+
+    /* Appearance */
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #ff00ff; /* Primary color */
+    color: white;
+    border: 3px solid #38c3e8;
+    box-shadow: 0 4px 15px rgba(255, 0, 255, 0.8);
+
+    /* Centering Icon */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+#menu-toggle-btn:active {
+    /* Push effect when tapped */
+    transform: scale(0.95);
+    box-shadow: 0 2px 10px rgba(255, 0, 255, 0.6);
+}
+
+/* Hide the text label, only show icon */
+#menu-toggle-btn span {
+    display: none;
+}
