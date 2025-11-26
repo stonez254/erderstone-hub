@@ -579,7 +579,7 @@ main {
         width: 100vw; 
         height: 100vh; /* Take up the full viewport height */
         padding-top: 65px; 
-        position: fixed;
+        position: relatiive;
         top: 0;
         left: 0;
     }
